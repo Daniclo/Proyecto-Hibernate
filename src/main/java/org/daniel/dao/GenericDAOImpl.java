@@ -17,7 +17,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 
     @Override
     public Optional<T> findById(long id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession();) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return Optional.ofNullable(session.find(entityClass, id));
         }
     }
@@ -47,7 +47,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 
     @Override
     public void deleteById(long id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession();) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             if (session.find(entityClass, id) != null) session.remove(session.find(entityClass, id));
             session.getTransaction().commit();

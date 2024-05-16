@@ -29,7 +29,7 @@ public class GrupoDAOImpl extends GenericDAOImpl<Grupo> implements GrupoDAO {
     }
     @Override
     public Optional<Grupo> getGrupoByName(String name) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession();){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Grupo> query = session.createQuery("from Grupo where nombre = :nombreGrupo",
                     Grupo.class)
                     .setParameter("nombreGrupo", name);
